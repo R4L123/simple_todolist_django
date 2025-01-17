@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #222;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.task-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.task-link {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    flex-grow: 1;
+}
+
+.task-link:hover {
+    color: #007BFF;
+}
+
+.strike-button,
+.delete-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.strike-button:hover,
+.delete-button:hover {
+    background-color: #d6d6d6;
+}
+
+.hidden-desc {
+    display: none;
+    padding: 10px;
+    background: #f4f4f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.add-task-form {
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-task-form input,
+.add-task-form textarea {
+    font-size: 1em;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-task-form textarea {
+    height: 40px;
+    resize: none;
+}
+
+.add-task-form button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.add-task-form button:hover {
+    background-color: #0056b3;
+}

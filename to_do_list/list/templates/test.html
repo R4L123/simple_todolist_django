@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <ul>
+        {% for x in mytasks %}
+        <li id="task-{{ x.id }}" class="task-item">
+            <a class="task-link" id="text-{{ x.id }}" data-id="{{ x.id }}">{{ x.task }}</a>
+            <button class="strike-button" data-id="{{ x.id }}">done</button>
+
+            <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="delete-req-{{ x.id }}" />
+                <input type="hidden" name="task_id" value="{{ x.id }}" />
+                <button type="submit" class="delete-button">delete</button>
+            </form>
+        </li> 
+
+        <li id="details-container-{{ x.id }}" class="hidden-desc" style="display: none;">
+            <div class="task-details">
+                <p>{{ x.desc }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="add-task-form">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add" />
+            <input type="text" name="task" placeholder="Enter task title" required />
+            <textarea name="desc" placeholder="Enter task description (optional)"></textarea>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+    <script>
+        // script pour afficher la description d'une tache en appuyant dessus
+        const taskLinks = document.querySelectorAll(".task-link");
+
+        taskLinks.forEach(link => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault(); 
+                const taskId = link.getAttribute("data-id");
+                const detailsContainer = document.getElementById(`details-container-${taskId}`);
+
+                if (detailsContainer.style.display === "none" || detailsContainer.style.display === "") {
+                    detailsContainer.style.display = "block";
+                } else {
+                    detailsContainer.style.display = "none";
+                }
+            });
+        });
+
+        // script pour barrer la tache fini 
+        const strikeButtons = document.querySelectorAll(".strike-button");
+
+        strikeButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const taskId = button.getAttribute("data-id");
+                const textLine = document.getElementById(`text-${taskId}`);
+
+                if (textLine.style.textDecoration === "line-through") {
+                    textLine.style.textDecoration = "none";
+                    button.textContent = "done";
+                } else {
+                    textLine.style.textDecoration = "line-through";
+                    button.textContent = "undo";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
