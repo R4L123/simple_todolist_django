@@ -1,2 +1,2 @@
-# simpte_todolist_django
-a simple to-do list made using django 
+# Simple_todolist_django
+A simple to-do list made using Django 
